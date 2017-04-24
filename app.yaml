@@ -1,0 +1,22 @@
+service: athenapdf
+runtime: custom
+env: flex
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 3
+  cool_down_period_sec: 120
+  cpu_utilization:
+    target_utilization: 0.75
+env_variables:
+  GIN_MODE: 'debug'
+
+  # Weaver
+  WEAVER_AUTH_KEY: 'arachnys-weaver'
+  WEAVER_ATHENA_CMD: 'athenapdf -S'
+  WEAVER_MAX_WORKERS: '10'
+  WEAVER_MAX_CONVERSION_QUEUE: '50'
+  WEAVER_WORKER_TIMEOUT: '300'
+  WEAVER_CONVERSION_FALLBACK: 'false'
+
+health_check:
+  enable_health_check: False # Weaver does not support /_ah/health checks
